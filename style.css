@@ -1,0 +1,413 @@
+.get-an-answer {
+    background-color: #343541;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .get-an-answer .overlap-wrapper {
+    background-color: #343541;
+    overflow: hidden;
+    width: 375px;
+    height: 812px;
+  }
+  
+  .get-an-answer .overlap {
+    position: relative;
+    width: 377px;
+    height: 812px;
+    left: -1px;
+  }
+  
+  .get-an-answer .frame {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    position: absolute;
+    top: 170px;
+    left: 21px;
+  }
+  
+  .get-an-answer .frame-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 335px;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    padding: 0px 0px 0px 68px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .get-an-answer .div-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+    background-color: #10a37f;
+    border-radius: 8px 8px 0px 8px;
+  }
+  
+  .get-an-answer .text-wrapper {
+    position: relative;
+    width: fit-content;
+    margin-top: -1px;
+    font-family: "Raleway-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .get-an-answer .div {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .get-an-answer .frame-2 {
+    display: flex;
+    flex-direction: column;
+    width: 335px;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    padding: 0px 40px 0px 0px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .get-an-answer .the-sky-appears-blue-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 12px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+    background-color: #ffffff33;
+    border-radius: 8px 8px 8px 0px;
+  }
+  
+  .get-an-answer .the-sky-appears-blue {
+    position: relative;
+    flex: 1;
+    margin-top: -1px;
+    font-family: "Raleway-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 24px;
+  }
+  
+  .get-an-answer .frame-3 {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 0px 40px 0px 0px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+    opacity: 0.4;
+  }
+  
+  .get-an-answer .img {
+    position: relative;
+    width: 56px;
+  }
+  
+  .get-an-answer .frame-4 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .get-an-answer .div-2 {
+    position: relative;
+    width: 12px;
+    height: 12px;
+  }
+  
+  .get-an-answer .rectangle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: 0;
+    left: 0;
+    border: 1px solid;
+    border-color: #ffffff;
+  }
+  
+  .get-an-answer .rectangle-2 {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: 4px;
+    left: 4px;
+    background-color: #ffffff;
+  }
+  
+  .get-an-answer .text-wrapper-2 {
+    position: relative;
+    width: fit-content;
+    margin-top: -1px;
+    font-family: "Raleway-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .get-an-answer .group {
+    position: absolute;
+    width: 375px;
+    height: 812px;
+    top: 0;
+    left: 1px;
+  }
+  
+  .get-an-answer .bowser-ios-firefox {
+    position: absolute;
+    width: 375px;
+    height: 44px;
+    top: 0;
+    left: 0;
+    background-color: #343541;
+  }
+  
+  .get-an-answer .bars-status-bar {
+    position: relative;
+    height: 44px;
+  }
+  
+  .get-an-answer .battery {
+    position: absolute;
+    width: 24px;
+    height: 11px;
+    top: 17px;
+    left: 336px;
+  }
+  
+  .get-an-answer .overlap-group {
+    position: absolute;
+    width: 22px;
+    height: 11px;
+    top: 0;
+    left: 0;
+    border-radius: 2.67px;
+    border: 1px solid;
+    border-color: var(--global-white);
+  }
+  
+  .get-an-answer .capacity {
+    position: relative;
+    width: 18px;
+    height: 7px;
+    top: 1px;
+    left: 1px;
+    background-color: var(--global-white);
+    border-radius: 1.33px;
+  }
+  
+  .get-an-answer .cap {
+    position: absolute;
+    width: 1px;
+    height: 4px;
+    top: 4px;
+    left: 23px;
+  }
+  
+  .get-an-answer .wifi {
+    position: absolute;
+    width: 15px;
+    height: 11px;
+    top: 17px;
+    left: 316px;
+  }
+  
+  .get-an-answer .cellular-connection {
+    position: absolute;
+    width: 17px;
+    height: 11px;
+    top: 18px;
+    left: 294px;
+  }
+  
+  .get-an-answer .time-style {
+    position: absolute;
+    width: 54px;
+    height: 21px;
+    top: 7px;
+    left: 21px;
+  }
+  
+  .get-an-answer .time {
+    position: absolute;
+    width: 54px;
+    top: 5px;
+    left: 0;
+    font-family: var(--SF-subheadline-semibold-font-family);
+    font-weight: var(--SF-subheadline-semibold-font-weight);
+    color: var(--global-white);
+    font-size: var(--SF-subheadline-semibold-font-size);
+    text-align: center;
+    letter-spacing: var(--SF-subheadline-semibold-letter-spacing);
+    line-height: var(--SF-subheadline-semibold-line-height);
+    font-style: var(--SF-subheadline-semibold-font-style);
+  }
+  
+  .get-an-answer .bars-home-indicator {
+    position: absolute;
+    width: 134px;
+    height: 34px;
+    top: 778px;
+    left: 121px;
+  }
+  
+  .get-an-answer .home-indicator {
+    position: relative;
+    width: 136px;
+    height: 7px;
+    top: 20px;
+    left: -1px;
+    background-color: #ffffff;
+    border-radius: 100px;
+  }
+  
+  .get-an-answer .frame-5 {
+    display: flex;
+    width: 337px;
+    height: 54px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    position: absolute;
+    top: 698px;
+    left: 20px;
+    background-color: #ffffff1a;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid;
+    border-color: #ffffff52;
+  }
+  
+  .get-an-answer .rectangle-3 {
+    position: relative;
+    width: 1px;
+    height: 28px;
+    background-color: #ffffff;
+  }
+  
+  .get-an-answer .frame-6 {
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .get-an-answer .frame-7 {
+    display: flex;
+    flex-direction: column;
+    width: 377px;
+    height: 66px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0px 20px;
+    position: absolute;
+    top: 43px;
+    left: 0;
+    background-color: #343541;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-color: #ffffff66;
+  }
+  
+  .get-an-answer .frame-8 {
+    display: flex;
+    width: 335px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    flex: 1;
+    flex-grow: 1;
+  }
+  
+  .get-an-answer .frame-9 {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    align-self: stretch;
+    flex: 0 0 auto;
+  }
+  
+  .get-an-answer .vector-stroke {
+    position: relative;
+    width: 6.75px;
+    height: 12px;
+  }
+  
+  .get-an-answer .text-wrapper-3 {
+    position: relative;
+    width: fit-content;
+    font-family: "Raleway-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .get-an-answer .vector {
+    position: relative;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .get-an-answer .frame-10 {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 13px;
+    position: absolute;
+    top: 652px;
+    left: 93px;
+    background-color: #202123;
+    border-radius: 4px;
+    border: 1px solid;
+    border-color: #ffffff33;
+  }
+  
+  .get-an-answer .text-wrapper-4 {
+    position: relative;
+    width: fit-content;
+    margin-top: -0.5px;
+    font-family: "Raleway-Medium", Helvetica;
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  

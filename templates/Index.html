@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #454545;
+      background-image: url('/static/img/peint.jpg');
+      background-repeat: no-repeat;
+      background-size: 1024px 1024px;
+      background-position: center;
+      background-attachment: fixed;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    /* Styles pour la zone de discussion */
+    .chat-box {
+      width: 100%;
+      max-width: 100%;
+      background-color: rgba(255, 255, 255, 0); /* Arrière-plan semi-transparent */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 0px;
+      margin-bottom: 50px; /* Marge inférieure pour ne pas cacher complètement l'image */
+      overflow-y: auto;
+      max-height: 30vh;
+    }
+
+    .message {
+  margin-bottom: 16px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  word-wrap: break-word;
+  transition: opacity 0.1s ease; /* Animation de transition pour l'opacité */
+  width: 50%; /* Définition de la largeur des messages à 50% */
+  margin-left: auto; /* Centre le message horizontalement */
+  margin-right: auto; /* Centre le message horizontalement */
+}
+
+.user-message {
+  background-color: rgba(180, 180, 180, 0.7); /* Nuance de gris avec une transparence de 70% */
+  color: white;
+  align-self: flex-end;
+  justify-self: flex-end; /* Alignement du texte à droite */
+}
+
+.bot-message {
+  background-color: rgba(52, 53, 64, 0.7); /* Nuance de gris avec une transparence de 70% */
+  color: white;
+  align-self: flex-start;
+  justify-self: flex-start; /* Alignement du texte à gauche */
+}
+.sender-name {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.message .message-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.message .sender-info {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.message .sender-icon {
+  margin-right: 8px;
+}
+
+.user-message .message-content {
+  align-items: flex-end; /* Alignement à droite pour l'utilisateur */
+}
+
+.user-message .sender-info {
+  justify-content: flex-end; /* Alignement à droite pour l'utilisateur */
+}
+
+.bot-message .sender-info {
+  justify-content: flex-start; /* Alignement à gauche pour le bot */
+}
+.sender-name::before {
+  content: "👤"; /* Ajoute une icône d'utilisateur */
+  margin-right: 5px;
+}
+
+
+    .input-container {
+      width: 80%;
+      max-width: 600px;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.3); /* Arrière-plan semi-transparent */
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      margin-bottom: 5px;
+    }
+
+    .input-field {
+      flex: 1;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+
+    .send-button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      background-color: #007bff;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="chat-box" id="chatBox">
+</div>
+  
+  <div class="input-container">
+    <input type="text" class="input-field" placeholder="Tapez votre message ici" />
+    <button class="send-button">Envoyer</button>
+  </div>
+
+  <script>
+
+function ajouterMessage(nom, message, classe) {
+  const chatBox = document.getElementById('chatBox');
+  const newMessage = document.createElement('div');
+  newMessage.classList.add('message', classe);
+
+  const messageContent = document.createElement('div');
+  messageContent.classList.add('message-content');
+
+  const senderName = document.createElement('span');
+  senderName.classList.add('sender-name');
+  senderName.textContent = nom + ': ';
+
+  const messageText = document.createElement('span');
+  messageText.classList.add('message-text');
+  messageText.textContent = message;
+
+  messageContent.appendChild(senderName);
+  messageContent.appendChild(messageText);
+  newMessage.appendChild(messageContent);
+
+  chatBox.appendChild(newMessage);
+
+  const messages = document.querySelectorAll('.message');
+
+  // Ajuster l'opacité pour tous les messages sauf le dernier (le plus récent)
+  messages.forEach((msg, index) => {
+    if (index !== messages.length - 1) {
+      msg.style.opacity = 1 - (messages.length - 2 - index) * 0.4;
+    }
+  });
+
+  // Déplacer la vue vers le dernier message
+  const dernierMessage = document.querySelector('.message:last-child');
+  dernierMessage.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+// Gestionnaire pour le champ de saisie
+const inputField = document.querySelector('.input-field');
+inputField.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault(); // Empêche le comportement par défaut du champ de saisie (nouvelle ligne)
+    const messageContent = inputField.value;
+    if (messageContent.trim() !== '') {
+      ajouterMessage('Pharci', messageContent, 'user-message');
+      inputField.value = ''; // Efface le champ de saisie après l'envoi
+    }
+  }
+});
+
+// Gestionnaire pour le bouton "Envoyer"
+// Gestionnaire pour le bouton "Envoyer"
+const sendButton = document.querySelector('.send-button');
+sendButton.addEventListener('click', () => {
+  const inputField = document.querySelector('.input-field');
+  const messageContent = inputField.value.trim();
+
+  if (messageContent !== '') {
+    ajouterMessage('Pharci', messageContent, 'user-message');
+    inputField.value = ''; // Efface le champ de saisie après l'envoi
+
+    // Envoi de données JSON à votre serveur Flask
+    const dataToSend = { sender: 'Pharci', message: messageContent };
+    const url = '/views/data';
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dataToSend),
+    })
+    .then(response => response.json())
+    .then(responseData => {
+      ajouterMessage('Kimy', responseData.response, 'bot-message');
+      const imageData = { sender: 'Pharci', message: responseData.response };
+      const imgUrl = '/views/data_img';
+      fetch(imgUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(imageData),
+      })
+      .then(imageResponse => imageResponse.json())
+      .then(imageData => {
+        document.body.style.backgroundImage = `url(${imageData.response})`;
+      })
+      .catch(error => {
+        console.error('Erreur lors de la récupération de l\'image :', error);
+        // Gérer les erreurs ici
+      });
+    })
+    .catch(error => {
+      console.error('Erreur lors de la récupération de la réponse :', error);
+      // Gérer les erreurs ici
+    });
+  }
+});
+
+
+
+
+  </script>
+</body>
+</html>

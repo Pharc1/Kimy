@@ -1,0 +1,10 @@
+:root {
+    --global-white: rgba(255, 255, 255, 1);
+    --SF-subheadline-semibold-font-family: "SFPro Text-Semibold", Helvetica;
+    --SF-subheadline-semibold-font-weight: 400;
+    --SF-subheadline-semibold-font-size: 15px;
+    --SF-subheadline-semibold-letter-spacing: -0.23999999463558197px;
+    --SF-subheadline-semibold-line-height: 20px;
+    --SF-subheadline-semibold-font-style: normal;
+  }
+  
