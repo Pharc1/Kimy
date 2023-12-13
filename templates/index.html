@@ -129,13 +129,26 @@
 
         /* Media query pour les appareils mobiles */
     @media only screen and (max-width: 768px) {
+
+        .input-field {
+          width: calc(100% - 100px); /* Largeur de l'input */
+          /* ... autres styles ... */
+        }
+      
       .message {
         width: 80%; /* Ajustement de la largeur des messages pour les appareils mobiles */
       }
 
-      .input-container {
-        width: 90%; /* Ajustement de la largeur du conteneur de saisie pour les appareils mobiles */
-      }
+        .input-container {
+          width: 90%; /* Ajustement de la largeur du conteneur de saisie pour les appareils mobiles */
+          position: fixed; /* Position fixe pour le conteneur d'entrée */
+          bottom: 0; /* Positionné au bas de l'écran */
+          left: 0; /* Alignement à gauche */
+          right: 0; /* Alignement à droite */
+          background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
+          border-top: 1px solid #ccc; /* Bordure supérieure */
+          z-index: 999; /* Assurer que l'élément est au-dessus des autres éléments */
+        }
     }
   </style>
 </head>
