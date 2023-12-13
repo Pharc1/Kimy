@@ -130,10 +130,15 @@
         /* Media query pour les appareils mobiles */
     @media only screen and (max-width: 768px) {
 
-        .input-field {
-          width: calc(100% - 100px); /* Largeur de l'input */
-          /* ... autres styles ... */
-        }
+       .input-field {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    font-size: 14px;
+    box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
+}
       
       .message {
         width: 80%; /* Ajustement de la largeur des messages pour les appareils mobiles */
@@ -151,6 +156,7 @@
         }
     }
   </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body>
 <div class="chat-box" id="chatBox">
