@@ -205,28 +205,17 @@ function ajouterMessage(nom, message, classe) {
   dernierMessage.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
-// Gestionnaire pour le champ de saisie
-const inputField = document.querySelector('.input-field');
-inputField.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-    event.preventDefault(); // Empêche le comportement par défaut du champ de saisie (nouvelle ligne)
-    const messageContent = inputField.value;
-    if (messageContent.trim() !== '') {
-      ajouterMessage('Pharci', messageContent, 'user-message');
-      inputField.value = ''; // Efface le champ de saisie après l'envoi
-    }
-  }
-});
 
-// Gestionnaire pour le bouton "Envoyer"
-// Gestionnaire pour le bouton "Envoyer"
-const sendButton = document.querySelector('.send-button');
-sendButton.addEventListener('click', () => {
+
+
+
+
+function envoyerMessage() {
   const inputField = document.querySelector('.input-field');
   const messageContent = inputField.value.trim();
 
   if (messageContent !== '') {
-    ajouterMessage('Pharci', messageContent, 'user-message');
+    ajouterMessage('You', messageContent, 'user-message');
     inputField.value = ''; // Efface le champ de saisie après l'envoi
 
     // Envoi de données JSON à votre serveur Flask
@@ -240,32 +229,45 @@ sendButton.addEventListener('click', () => {
       },
       body: JSON.stringify(dataToSend),
     })
-    .then(response => response.json())
-    .then(responseData => {
-      ajouterMessage('Kimy', responseData.response, 'bot-message');
-      const imageData = { sender: 'Pharci', message: responseData.response };
-      const imgUrl = '/views/data_img';
-      fetch(imgUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(imageData),
-      })
-      .then(imageResponse => imageResponse.json())
-      .then(imageData => {
-        document.body.style.backgroundImage = `url(${imageData.response})`;
+      .then(response => response.json())
+      .then(responseData => {
+        ajouterMessage('Kimy', responseData.response, 'bot-message');
+        const imageData = { sender: 'Pharci', message: responseData.response };
+        const imgUrl = '/views/data_img';
+        fetch(imgUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(imageData),
+        })
+          .then(imageResponse => imageResponse.json())
+          .then(imageData => {
+            document.body.style.backgroundImage = `url(${imageData.response})`;
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération de l\'image :', error);
+            // Gérer les erreurs ici
+          });
       })
       .catch(error => {
-        console.error('Erreur lors de la récupération de l\'image :', error);
+        console.error('Erreur lors de la récupération de la réponse :', error);
         // Gérer les erreurs ici
       });
-    })
-    .catch(error => {
-      console.error('Erreur lors de la récupération de la réponse :', error);
-      // Gérer les erreurs ici
-    });
   }
+}
+
+const inputField = document.querySelector('.input-field');
+inputField.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    envoyerMessage();
+  }
+});
+
+const sendButton = document.querySelector('.send-button');
+sendButton.addEventListener('click', () => {
+  envoyerMessage();
 });
 
 
