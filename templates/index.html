@@ -130,30 +130,38 @@
         /* Media query pour les appareils mobiles */
     @media only screen and (max-width: 768px) {
 
-       .input-field {
-    width: 100%;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    margin-right: 10px;
-    font-size: 14px;
-    box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
-}
+    .input-field {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+      font-size: 14px;
+      box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
+    }
       
-      .message {
-        width: 80%; /* Ajustement de la largeur des messages pour les appareils mobiles */
-      }
+    .message {
+      width: 80%; /* Ajustement de la largeur des messages pour les appareils mobiles */
+    }
 
-        .input-container {
-          width: 90%; /* Ajustement de la largeur du conteneur de saisie pour les appareils mobiles */
-          position: fixed; /* Position fixe pour le conteneur d'entrée */
-          bottom: 0; /* Positionné au bas de l'écran */
-          left: 0; /* Alignement à gauche */
-          right: 0; /* Alignement à droite */
-          background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
-          border-top: 1px solid #ccc; /* Bordure supérieure */
-          z-index: 999; /* Assurer que l'élément est au-dessus des autres éléments */
-        }
+    .input-container {
+      width: 90%; /* Ajustement de la largeur du conteneur de saisie pour les appareils mobiles */
+      position: fixed; /* Position fixe pour le conteneur d'entrée */
+      bottom: 0; /* Positionné au bas de l'écran */
+      left: 0; /* Alignement à gauche */
+      right: 0; /* Alignement à droite */
+      background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
+      border-top: 1px solid #ccc; /* Bordure supérieure */
+      z-index: 999; /* Assurer que l'élément est au-dessus des autres éléments */
+    }
+
+    .chat-box {
+
+      margin-bottom: 100px;
+
+    }
+      
+
     }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -168,6 +176,55 @@
   </div>
 
   <script>
+
+
+window.onload = function() {
+  // Affiche une boîte de dialogue demandant le prénom de la personne
+  const prenom = prompt("Entrez votre prénom:");
+
+  // Vérifie si l'utilisateur a saisi un prénom et affiche un message correspondant
+  if (prenom != null && prenom.trim() !== "") {
+    const dataToSend = { sender: prenom, message: `Bonjour kimy je m'apelle ${prenom}, explique moi dans quel monde je suis et comment jouer ?` };
+    const url = '/data';
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dataToSend),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        ajouterMessage('Kimy', responseData.response, 'bot-message');
+        const imageData = { sender: 'Pharci', message: responseData.response };
+        const imgUrl = '/views/data_img';
+        fetch(imgUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(imageData),
+        })
+          .then(imageResponse => imageResponse.json())
+          .then(imageData => {
+            document.body.style.backgroundImage = `url(${imageData.response})`;
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération de l\'image :', error);
+            // Gérer les erreurs ici
+          });
+      })
+      .catch(error => {
+        console.error('Erreur lors de la récupération de la réponse :', error);
+        // Gérer les erreurs ici
+      });
+
+  } else {
+    alert("Vous n'avez pas saisi de prénom. Merci de recharger la page et d'entrer votre prénom.");
+  }
+};
+
 
 function ajouterMessage(nom, message, classe) {
   const chatBox = document.getElementById('chatBox');
@@ -220,7 +277,7 @@ function envoyerMessage() {
 
     // Envoi de données JSON à votre serveur Flask
     const dataToSend = { sender: 'Pharci', message: messageContent };
-    const url = '/views/data';
+    const url = '/data';
 
     fetch(url, {
       method: 'POST',
