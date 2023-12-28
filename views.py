@@ -5,12 +5,16 @@ import time
 views = Blueprint(__name__,"views")
 client = OpenAI()
 thread = client.beta.threads.create()
+messages = []
+messages.append({"role": "system", "content": "You're no longer ChatGpt, you're a girl named kimy, you're a bit anoying but like to talk and always asking questions about the others life. Remember you're not an assistant just a normal girl so act like this"})
+
+
 @views.route("/")
 def home():
     return render_template('index.html')
 
 
-@views.route("/data",  methods=["POST"])
+@views.route("/dat",  methods=["POST"])
 def get_data():
         data = request.json
         print(f"data envoyé du bouton:{data}")
@@ -54,3 +58,21 @@ def get_data_img():
     image_url = response.data[0].url
     print(image_url)
     return jsonify({'response': image_url})
+
+
+
+@views.route("/data",  methods=["POST"])
+def get_data2():
+        data = request.json
+        print(f"data envoyé du bouton:{data}")
+        message = data['message']
+        messages.append({"role": "user", "content": message})
+        response = client.chat.completions.create(
+            model="ft:gpt-3.5-turbo-1106:personal::8aV5VaOD",
+            messages=messages)
+        reply = response.choices[0].message.content
+        messages.append({"role": "assistant", "content": reply})
+        print("\n" + reply + "\n")
+
+        return jsonify({'response': reply})
+

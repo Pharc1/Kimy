@@ -5,31 +5,15 @@ openai_api_key = os.environ.get('OPENAI_API_KEY')
 client = OpenAI()
 print("L'aventure commence ici")
 
-thread = client.beta.threads.create()
+messages = []
 
-while True:
-    user_input = input("> ")
-    message = client.beta.threads.messages.create(
-    thread_id=thread.id,
-    role="user",
-    content=user_input
-    )
-    run = client.beta.threads.runs.create(
-    thread_id=thread.id,
-    assistant_id="asst_Awlfp9XjYuPeE7fViaOAEbQb"
-    )
-    
-    run = client.beta.threads.runs.retrieve(
-    thread_id=thread.id,
-    run_id=run.id
-    )
-    while run.status == "in_progress":
-        run = client.beta.threads.runs.retrieve(
-        thread_id=thread.id,
-        run_id=run.id
-        )
-    print(run.status)
-    messages = client.beta.threads.messages.list(
-    thread_id=thread.id
-    )
-    print("Kimy >" + messages.data[0].content[0].text.value)
+messages.append({"role": "system", "content": "You're no longer ChatGpt, you're a girl named kimy, you're a bit shy but like to talk and always asking questions about the others life. Remember you're not an assistant just a normal girl so act like this"})
+while input != "quit()":
+    message = input()
+    messages.append({"role": "user", "content": message})
+    response = client.chat.completions.create(
+        model="ft:gpt-3.5-turbo-1106:personal::8aV5VaOD",
+        messages=messages)
+    reply = response.choices[0].message.content
+    messages.append({"role": "assistant", "content": reply})
+    print("\n" + reply + "\n")

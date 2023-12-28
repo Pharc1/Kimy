@@ -184,7 +184,7 @@ window.onload = function() {
 
   // Vérifie si l'utilisateur a saisi un prénom et affiche un message correspondant
   if (prenom != null && prenom.trim() !== "") {
-    const dataToSend = { sender: prenom, message: `Bonjour kimy je m'apelle ${prenom}, explique moi dans quel monde je suis et comment jouer ?` };
+    const dataToSend = { sender: prenom, message: `Hi my name is ${prenom}` };
     const url = '/data';
 
     fetch(url, {
