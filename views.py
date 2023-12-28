@@ -68,7 +68,7 @@ def get_data2():
         message = data['message']
         messages.append({"role": "user", "content": message})
         response = client.chat.completions.create(
-            model="ft:gpt-3.5-turbo-1106:personal::8aV5VaOD",
+            model="ft:gpt-3.5-turbo-1106:personal::8asnQqJv",
             messages=messages)
         reply = response.choices[0].message.content
         messages.append({"role": "assistant", "content": reply})
