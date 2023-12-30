@@ -8,9 +8,9 @@
       padding: 0;
       font-family: Arial, sans-serif;
       background-color: #454545;
-      background-image: url('/static/img/peint.jpg');
-      background-repeat: no-repeat;
-      background-size: 1024px 1024px;
+      background-image: url('/static/img/background.png');
+      background-repeat:no-repeat;
+      background-size:cover;
       background-position: cover;
       background-attachment: fixed;
       height: 100vh;
@@ -22,15 +22,14 @@
 
     /* Styles pour la zone de discussion */
     .chat-box {
-      width: 100%;
-      max-width: 100%;
+      width: 80%;
+      max-width: 80%;
       background-color: rgba(255, 255, 255, 0); /* Arrière-plan semi-transparent */
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       padding: 0px;
       margin-bottom: 50px; /* Marge inférieure pour ne pas cacher complètement l'image */
       overflow-y: auto;
-      max-height: 30vh;
+      max-height: 100vh;
     }
 
     .message {
@@ -45,14 +44,14 @@
 }
 
 .user-message {
-  background-color: rgba(180, 180, 180, 0.7); /* Nuance de gris avec une transparence de 70% */
+  ackground-color: #454545; /* Nuance de gris avec une transparence de 70% */
   color: white;
   align-self: flex-end;
   justify-self: flex-end; /* Alignement du texte à droite */
 }
 
 .bot-message {
-  background-color: rgba(52, 53, 64, 0.7); /* Nuance de gris avec une transparence de 70% */
+  ackground-color: #454545; /* Nuance de gris avec une transparence de 70% */
   color: white;
   align-self: flex-start;
   justify-self: flex-start; /* Alignement du texte à gauche */
@@ -101,8 +100,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: rgba(255, 255, 255, 0.3); /* Arrière-plan semi-transparent */
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+      ackground-color: rgba(255, 255, 255, 0.3); /* Arrière-plan semi-transparent */
+      ox-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
       margin-bottom: 5px;
     }
@@ -114,13 +113,15 @@
       border: 1px solid #ccc;
       margin-right: 10px;
       font-size: 14px;
+      background-color:#2B2B2B ;
+      color: white;
     }
 
     .send-button {
       padding: 10px 20px;
-      border: none;
+      border: 1px solid #ccc;
       border-radius: 6px;
-      background-color: #007bff;
+      background-color: #2B2B2B;
       color: white;
       font-size: 14px;
       cursor: pointer;
@@ -130,6 +131,12 @@
         /* Media query pour les appareils mobiles */
     @media only screen and (max-width: 768px) {
 
+      body{
+        background-image: url('/static/img/bg_mobile.png');
+         /* Ajuster la taille pour que l'image soit entièrement visible */
+        background-position: center;
+      }
+
     .input-field {
       width: 100%;
       padding: 10px;
@@ -138,6 +145,11 @@
       margin-right: 10px;
       font-size: 14px;
       box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
+    }
+
+    .chat-box {
+      width: 100%;
+      max-width: 100%;
     }
       
     .message {
@@ -150,7 +162,7 @@
       bottom: 0; /* Positionné au bas de l'écran */
       left: 0; /* Alignement à gauche */
       right: 0; /* Alignement à droite */
-      background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
+      ackground-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
       border-top: 1px solid #ccc; /* Bordure supérieure */
       z-index: 999; /* Assurer que l'élément est au-dessus des autres éléments */
     }
@@ -160,24 +172,106 @@
       margin-bottom: 100px;
 
     }
+
+    .typewriting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px; /* Ajustez la hauteur pour centrer verticalement */
+    overflow: hidden; /* Masquer le contenu qui dépasse */
+    padding: 0 5px; /* Ajouter un peu d'espace autour des points */
+    margin-right: 50px;
+  }
+
+
+  .typewriting-dot {
+    animation: blink 1.4s infinite;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin: 0 1px;
+    background-color: #ffffff;
+    position: relative; /* Changer la position en relative */
+    top: 0; /* Réinitialiser la position verticale */
+  }
+
+  .typewriting-dot:nth-child(2) {
+    animation-delay: .2s;
+  }
+
+  .typewriting-dot:nth-child(3) {
+    animation-delay: .4s;
+  }
       
 
     }
+
+/* Typing indicator animation */
+@keyframes blink {
+  0% { opacity: 0; transform: translateY(0);}
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-7px);}
+}
+
+.typewriting {
+  display: inline-block;
+  margin-left: 450px;
+}
+
+.typewriting-dot {
+  animation: blink 1.5s infinite;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin: 0 1px;
+  background-color: #ffffff;
+}
+
+.typewriting-dot:nth-child(2) {
+  animation-delay: .2s;
+}
+
+.typewriting-dot:nth-child(3) {
+  animation-delay: .4s;
+}
+
+/* Banner with the site name "MAI" */
+.banner {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Assuming that there is a main container around the chat elements */
+.main-container {
+  max-width: 600px;
+  margin: auto;
+  border: 1px solid #ccc;
+}
+
+
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body>
 <div class="chat-box" id="chatBox">
 </div>
+
   
   <div class="input-container">
-    <input type="text" class="input-field" placeholder="Tapez votre message ici" />
+    <input type="text" class="input-field" placeholder="Envoyer un message.." />
     <button class="send-button">Envoyer</button>
   </div>
 
   <script>
 
-
+/*
 window.onload = function() {
   // Affiche une boîte de dialogue demandant le prénom de la personne
   const prenom = prompt("Entrez votre prénom:");
@@ -224,7 +318,7 @@ window.onload = function() {
     alert("Vous n'avez pas saisi de prénom. Merci de recharger la page et d'entrer votre prénom.");
   }
 };
-
+*/
 
 function ajouterMessage(nom, message, classe) {
   const chatBox = document.getElementById('chatBox');
@@ -248,18 +342,8 @@ function ajouterMessage(nom, message, classe) {
 
   chatBox.appendChild(newMessage);
 
-  const messages = document.querySelectorAll('.message');
-
-  // Ajuster l'opacité pour tous les messages sauf le dernier (le plus récent)
-  messages.forEach((msg, index) => {
-    if (index !== messages.length - 1) {
-      msg.style.opacity = 1 - (messages.length - 2 - index) * 0.4;
-    }
-  });
-
-  // Déplacer la vue vers le dernier message
-  const dernierMessage = document.querySelector('.message:last-child');
-  dernierMessage.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  // Scroll vers le dernier message ajouté
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 
@@ -267,7 +351,17 @@ function ajouterMessage(nom, message, classe) {
 
 
 
+
 function envoyerMessage() {
+  // Start the typewriting animation when a message is sent
+  var chatBox = document.querySelector('.chat-box');
+  var typingIndicator = document.createElement('div');
+  typingIndicator.className = 'typewriting';
+  typingIndicator.innerHTML = '<div class="typewriting-dot"></div>'.repeat(3);
+  chatBox.appendChild(typingIndicator);
+
+  // Rest of your existing 'envoyerMessage' function ...
+
   const inputField = document.querySelector('.input-field');
   const messageContent = inputField.value.trim();
 
@@ -287,8 +381,13 @@ function envoyerMessage() {
       body: JSON.stringify(dataToSend),
     })
       .then(response => response.json())
-      .then(responseData => {
-        ajouterMessage('Kimy', responseData.response, 'bot-message');
+      
+.then(responseData => {
+        // Remove the typewriting animation once the message response is received
+        if (typingIndicator.parentNode === chatBox) {
+          chatBox.removeChild(typingIndicator);
+        }
+        ajouterMessage('Mia', responseData.response, 'bot-message');
         const imageData = { sender: 'Pharci', message: responseData.response };
         const imgUrl = '/views/data_img';
         fetch(imgUrl, {
@@ -328,6 +427,31 @@ sendButton.addEventListener('click', () => {
 });
 
 
+document.addEventListener('DOMContentLoaded', function() {
+
+  const motDePasse = 'mdpdefou'; // Remplacez 'votreMotDePasse' par votre mot de passe
+
+  // Fonction pour vérifier le mot de passe saisi
+  
+    const saisie = prompt('mot de passe :');
+
+    if (saisie !== motDePasse) {
+      alert('Mot de passe incorrect.');
+      window.location.reload(); // Recharge la page si le mot de passe est incorrect
+    }
+
+  const chatBox = document.querySelector('.chat-box');
+  const typingIndicator = document.createElement('div');
+  typingIndicator.className = 'typewriting';
+  typingIndicator.innerHTML = '<div class="typewriting-dot"></div>'.repeat(3);
+  chatBox.appendChild(typingIndicator);
+
+  // Simule une attente de 2 secondes (2000 millisecondes) avant d'afficher le message par défaut
+  setTimeout(function() {
+    ajouterMessage('Mia', "OMG salut!! ça fait des heures je m'ennuie, il m'ai arrivé un truc de fou aujourd'hui, tu vas pas en croire tes oreilles !!", 'bot-message');
+    chatBox.removeChild(typingIndicator); // Supprime l'animation une fois le message affiché
+  }, 2000); // Modifier le délai d'attente si nécessaire
+});
 
 
   </script>

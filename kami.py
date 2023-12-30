@@ -3,7 +3,6 @@ from openai import OpenAI
 
 openai_api_key = os.environ.get('OPENAI_API_KEY')
 client = OpenAI()
-print("L'aventure commence ici")
 
 messages = []
 
