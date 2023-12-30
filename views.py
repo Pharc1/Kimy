@@ -96,7 +96,7 @@ def get_data2():
             messages=messages)
         reply = response.choices[0].message.content
         messages.append({"role": "assistant", "content": reply})
-        print("\n" + reply + "\n")
+        print("\n kimy wrote:" + reply + "\n")
 
         return jsonify({'response': reply})
 
