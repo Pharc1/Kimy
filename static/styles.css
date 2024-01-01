@@ -1,0 +1,398 @@
+
+
+
+body.chat {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #454545;
+    background-image: url('/static/img/background.png');
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: cover;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  /* Styles pour la zone de discussion */
+  .chat-box {
+    width: 80%;
+    max-width: 80%;
+    background-color: rgba(255, 255, 255, 0); /* Arrière-plan semi-transparent */
+    border-radius: 10px;
+    padding: 0px;
+    margin-bottom: 50px; /* Marge inférieure pour ne pas cacher complètement l'image */
+    overflow-y: auto;
+    max-height: 100vh;
+  }
+
+  .message {
+margin-bottom: 16px;
+padding: 10px 15px;
+border-radius: 6px;
+word-wrap: break-word;
+transition: opacity 0.1s ease; /* Animation de transition pour l'opacité */
+width: 50%; /* Définition de la largeur des messages à 50% */
+margin-left: auto; /* Centre le message horizontalement */
+margin-right: auto; /* Centre le message horizontalement */
+}
+
+.user-message {
+ackground-color: #454545; /* Nuance de gris avec une transparence de 70% */
+color: white;
+align-self: flex-end;
+justify-self: flex-end; /* Alignement du texte à droite */
+}
+
+.bot-message {
+ackground-color: #454545; /* Nuance de gris avec une transparence de 70% */
+color: white;
+align-self: flex-start;
+justify-self: flex-start; /* Alignement du texte à gauche */
+}
+.sender-name {
+margin-right: 10px;
+font-weight: bold;
+}
+
+.message .message-content {
+display: flex;
+flex-direction: column;
+}
+
+.message .sender-info {
+display: flex;
+align-items: center;
+margin-top: 8px;
+}
+
+.message .sender-icon {
+margin-right: 8px;
+}
+
+.user-message .message-content {
+align-items: flex-end; /* Alignement à droite pour l'utilisateur */
+}
+
+.user-message .sender-info {
+justify-content: flex-end; /* Alignement à droite pour l'utilisateur */
+}
+
+.bot-message .sender-info {
+justify-content: flex-start; /* Alignement à gauche pour le bot */
+}
+.sender-name::before {
+content: "👤"; /* Ajoute une icône d'utilisateur */
+margin-right: 5px;
+}
+
+
+  .input-container {
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ackground-color: rgba(255, 255, 255, 0.3); /* Arrière-plan semi-transparent */
+    ox-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 5px;
+  }
+
+  .input-field {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    font-size: 14px;
+    background-color:#2B2B2B ;
+    color: white;
+  }
+
+  .send-button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #2B2B2B;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+
+      /* Media query pour les appareils mobiles */
+  @media only screen and (max-width: 768px) {
+
+    body{
+      background-image: url('/static/img/bg_mobile.png');
+       /* Ajuster la taille pour que l'image soit entièrement visible */
+      background-position: center;
+    }
+
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    font-size: 14px;
+    box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
+  }
+
+  .chat-box {
+    width: 100%;
+    max-width: 100%;
+  }
+    
+  .message {
+    width: 80%; /* Ajustement de la largeur des messages pour les appareils mobiles */
+  }
+
+  .input-container {
+    width: 90%; /* Ajustement de la largeur du conteneur de saisie pour les appareils mobiles */
+    position: fixed; /* Position fixe pour le conteneur d'entrée */
+    bottom: 0; /* Positionné au bas de l'écran */
+    left: 0; /* Alignement à gauche */
+    right: 0; /* Alignement à droite */
+    ackground-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
+    border-top: 1px solid #ccc; /* Bordure supérieure */
+    z-index: 999; /* Assurer que l'élément est au-dessus des autres éléments */
+  }
+
+  .chat-box {
+
+    margin-bottom: 100px;
+
+  }
+
+  .typewriting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px; /* Ajustez la hauteur pour centrer verticalement */
+  overflow: hidden; /* Masquer le contenu qui dépasse */
+  padding: 0 5px; /* Ajouter un peu d'espace autour des points */
+  margin-right: 50px;
+}
+
+
+.typewriting-dot {
+  animation: blink 1.4s infinite;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin: 0 1px;
+  background-color: #ffffff;
+  position: relative; /* Changer la position en relative */
+  top: 0; /* Réinitialiser la position verticale */
+}
+
+.typewriting-dot:nth-child(2) {
+  animation-delay: .2s;
+}
+
+.typewriting-dot:nth-child(3) {
+  animation-delay: .4s;
+}
+    
+
+  }
+
+/* Typing indicator animation */
+@keyframes blink {
+0% { opacity: 0; transform: translateY(0);}
+50% { opacity: 1; }
+100% { opacity: 0; transform: translateY(-7px);}
+}
+
+.typewriting {
+display: inline-block;
+margin-left: 450px;
+}
+
+.typewriting-dot {
+animation: blink 1.5s infinite;
+display: inline-block;
+width: 6px;
+height: 6px;
+border-radius: 50%;
+margin: 0 1px;
+background-color: #ffffff;
+}
+
+.typewriting-dot:nth-child(2) {
+animation-delay: .2s;
+}
+
+.typewriting-dot:nth-child(3) {
+animation-delay: .4s;
+}
+
+/* Banner with the site name "MAI" */
+.banner {
+width: 100%;
+padding: 10px 0;
+background-color: #333;
+color: #fff;
+text-align: center;
+font-size: 24px;
+font-weight: bold;
+}
+
+/* Assuming that there is a main container around the chat elements */
+.main-container {
+max-width: 600px;
+margin: auto;
+border: 1px solid #ccc;
+}
+
+
+/*---------------------------login---------------------------*/
+
+body.login{
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: black;
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.container {
+  ackground-color: #ffffff18;
+  padding: 40px;
+  border-radius: 5px;
+  
+  display: flex; /* Utilisation de flexbox */
+  flex-direction: column; /* Alignement en colonne */
+  align-items: center; /* Centrage vertical */
+  position: relative;
+  z-index: 0;
+}
+h2.login {
+  text-align: center;
+  color: white;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: white;
+}
+
+a{
+  color: #ccc;
+}
+
+hr.login{
+  width: 100%;
+  border-color: #cccccc42;
+}
+p.login{
+  font-size: 15px;
+  color: white;
+}
+.form-group input[type="text"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  border: none; /* Supprime la bordure existante */
+  border-bottom: 1px solid #ccc; /* Ajoute une ligne en dessous */
+  background-color: transparent; /* Rend le fond transparent */
+  outline: none; /* Supprime la bordure bleue lorsqu'on clique */
+  color: white;
+
+}
+.form-group input[type="submit"] {
+  
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #6f7172;
+  color: #fff;
+  cursor: pointer;
+}
+
+.logo-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 40px;
+}
+
+.logo-container img {
+  max-width: 100%; /* Pour s'assurer que l'image ne dépasse pas de la largeur de son conteneur */
+  max-height: 100px; /* Ajustez la hauteur de l'image selon votre besoin */
+  display: block; /* Centrer l'image à l'intérieur du conteneur */
+  margin: 0 auto; /* Centrer horizontalement */
+}
+
+/*-------------------------------Home--------------------------------*/
+body.home{
+  margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: cover;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  background-color: black;
+  background-image: url(/static/img/bg_home.png);
+}
+
+button.home{
+  width: 100%;
+  padding: 20px;
+  width: 250px;
+  border: none;
+  border-radius: 20px;
+  background-color: #F6DACF;
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
+  margin-bottom: 100px;
+  margin-right: 800px;
+}
+
+
+body.notavl{
+  margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: cover;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  background-color: black;
+  background-image: url(/static/img/oups.png);
+}

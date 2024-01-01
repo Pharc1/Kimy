@@ -1,6 +1,9 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, Flask, abort, render_template, request, jsonify, redirect, url_for, session
 from openai import OpenAI
 import time
+import os
+
+
 
 views = Blueprint(__name__,"views")
 client = OpenAI()
@@ -13,7 +16,6 @@ Tu es une jolie jeune femme de 20 ans pleine de joie.
 Tu aime parler.
 Tu dis souvent euh.. quand tu hésite ou BAHAHA quand tu ris.
 Tu aime jouer avec le sarcasme et ses limites car tu as une personalité assez excentrique.
-Tu es persuadé que les théories du complot sont réel et tu aime faire des blagues autours de ça.
 
 
 
@@ -35,6 +37,61 @@ messages.append({"role": "assistant", "content": "OMG salut!! ça fait des heure
 def home():
     return render_template('index.html')
 
+def login_needed(function):
+     def wrapper(*args,**kwargs):
+          if 'username' not in session:
+               return abort(401)
+          else:
+               return function()
+     return wrapper
+
+@views.route("/chat")
+@login_needed
+def chat():
+    return render_template('chat.html')
+
+
+@views.route("/oups")
+def oups():
+    return render_template('notavl.html')
+
+@views.route("/connexion", methods=["GET", "POST"])
+def log():
+    error = None
+
+    if request.method == "POST":
+         # Gérer les données de formulaire pour la connexion ici
+        username = request.form['username']
+        password = request.form['password']
+        print(request.form)
+        # Exemple de traitement basique
+        if username == 'test' and password == 'AZERTYUI':
+            # Redirection après une connexion réussie (ici, vers une page de profil par exemple)
+            session['username']=username
+            return redirect('/chat')
+        else:
+            error = "Identifiants invalides. Veuillez réessayer."
+            # Gérer le cas où les identifiants sont incorrects (rediriger vers une page d'erreur ou afficher un message)
+        
+    return render_template('login.php', error=error)
+
+
+@views.route("/inscription", methods=["GET", "POST"])
+def sign():
+    if request.method == "GET":
+        return render_template('signup.html')
+    elif request.method == "POST":
+        # Gérer les données de formulaire pour la connexion ici
+        # Par exemple, récupérer les informations du formulaire
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        print(request.form)
+        # Faire le traitement nécessaire avec les informations d'identification
+        # Par exemple, vérifier les identifiants, authentifier l'utilisateur, etc.
+
+        # Rediriger ou afficher une nouvelle page après la connexion
+        return redirect('/oups') 
 
 @views.route("/dat",  methods=["POST"])
 def get_data():
